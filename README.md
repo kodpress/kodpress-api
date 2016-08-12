@@ -1,8 +1,9 @@
 Kodpress Api
 ===================
+Dünya'nın en büyük açık kaynak kodlu platformu olan wordpress her geçen gün artış gösteren grafiği ile kullanıcılarda mobil platforma kayma isteğini de ortaya çıkartıyor. Bu durum göz önüne alındığında Kodpit Yazılım olarak bu wordpress platformlarını mobil platformlarla birleştiriyor. Bizim geliştirdiğimiz mobil teknolojilerle,  web masterların geliştirdiği api desteği birleşince karşınıza harika bir sistem çıkıyor. **KODPRESS...** 
 
-Türkiye’de aktif olarak yaklaşık 1 Milyon kişi wordpress altyapısını kullanıyor. Halihazırda bu uygulamaların yarısına yakını sahipleri tarafından kendi sunucularında tutuluyor. Bu veriler ışığında kullanıcılar mobil platforma da kayma isteğinde bulunabiliyor. Tüm bu durumlar göz önüne alındığında Kodpit Yazılım olarak bu wordpress platformlarını mobil platformlarla birleştiriyor. Bizim geliştirdiğimiz mobil teknolojilerle,  web masterların geliştirdiği api desteği birleşince karşınıza harika bir sistem çıkıyor. **KODPRESS...** 
-
+##Version
+0.0.1 
 
 ##Authorization
 Herhangi authorization işlemine ihtiyaç yok. Wordpress kadar açık.. 
