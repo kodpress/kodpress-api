@@ -1,51 +1,52 @@
 Kodpress Api
 ===================
 
-Türkiye'deki yaklaşık 74 milyon (2014 istatistiklerine göre) wordpress tabanlı web uygulama var. Halihazırda bu uygulamaların yarısına yakını sahipleri tarafından kendi sunucularında tutuluyor. Bu veriler ışığında kullanıcılar mobil platforma da kayma isteğinde bulunabiliyor. Tüm bu durumlar göz önüne alındığında Kodpit Yazılım olarak bu wordpress platformlarını mobil platformlarla birleştiriyor. Bizim geliştirdiğimiz mobil teknolojilerle,  web masterların geliştirdiği api desteği birleşince karşınıza harika bir sistem çıkıyor. **KODPRESS...** 
+Türkiye’de aktif olarak yaklaşık 1 Milyon kişi wordpress altyapısını kullanıyor. Halihazırda bu uygulamaların yarısına yakını sahipleri tarafından kendi sunucularında tutuluyor. Bu veriler ışığında kullanıcılar mobil platforma da kayma isteğinde bulunabiliyor. Tüm bu durumlar göz önüne alındığında Kodpit Yazılım olarak bu wordpress platformlarını mobil platformlarla birleştiriyor. Bizim geliştirdiğimiz mobil teknolojilerle,  web masterların geliştirdiği api desteği birleşince karşınıza harika bir sistem çıkıyor. **KODPRESS...** 
 
-----------
+
 ##Authorization
 Herhangi authorization işlemine ihtiyaç yok. Wordpress kadar açık.. 
 
-----------
-
-##Desteklenen veri formatı
-
-```json
-application/json
-```
-
-----------
 
 ##Dökumantasyon
 
-GET /KODPRESS/status -> Wordpress arayüzündeki güncellemeyi dinler.
-Parameters:
-: none
 
-**Response:**
-```json
-{ "datachange" = "1" } yada { "datachange" = "0" }
+####**Wordpress arayüzündeki güncellemeyi dinler.**
+
+**Request:**
 ```
----
-
-GET /KODPRESS/initialize -> Uygulama hazırlama için çeşitli veriler.(Postlar,  kategoriler, reklamlar, son dakika haberleri, slider ayarlamaları...)
-Parameters:
-: none
-
+URL: {www.domain.com}/kodpress-api/status
+HTTP Request Type: GET
+Parameters: none
+```
 **Response:**
-```json
+```
+{ 
+	"datastatus" : "1" ## wordpress paneldeki değişiklik
+}
+```
+------
+####**Uygulama hazırlama için çeşitli veriler içerir.**
+
+**Request:**
+```
+URL: {www.domain.com}/kodpress-api/initialize
+HTTP Request Type: GET
+Parameters: none
+	
+```
+**Response:**
+```
 {
   "success": "1",
-  "errorcode": "200",
   "message": "All done",
-  "app_name/icon": "",
-  "related_post_text": "",
+  "app_name/icon": "",        ## uygulamalar için marka ikonu(navbar için)
+  "related_post_text": "",    ## ilgili postlar başlığı
   "categories": [
     {
       "categori_id": "1",
       "categori_name": "Healt",
-      "categori_count": "6",
+      "categori_count": "6",        ##kategorideki post sayısı
       "categori_bacgroundcolor": "#55555",
       "categori_color": "#444444",
       "categori_fontsize": "14",
@@ -66,7 +67,7 @@ Parameters:
     "navbar_backicon_color": "#22144",
     "navbar_backicon_fontsize": "15"
   },
-  "breakingNews_styles": {
+  "breakingNews_styles": {           ##son dakika haberleri için 
     "news_text": "Breaking News is here",
     "news_color": "#876532",
     "news_bacgroundcolor": "#e45e5",
@@ -77,11 +78,11 @@ Parameters:
   },
   "sliderImages": [
     {
-      "post_id": "1",
-      "post_image": ""
+      "post_id": "35",      ## sliderda bulunacak post'un id'si
+      "post_image": ""      ## post'un önemli görseli 
     }...
   ],
-  "indexPosts": [
+  "indexPosts": [      ##Her kategoriden kullanıcının belirlediği sayıda postlar
     {
       "categori_id": "1",
       "categori_name": "Healt",
@@ -90,7 +91,7 @@ Parameters:
       "categori_color": "#444444",
       "categori_fontsize": "14",
       "categori_fontfamily": "Inconsolata",
-      "categori_allposts_text": "TÃ¼m yazÄ±lar",
+      "categori_allposts_text": "Tum yazilar",
       "categori_allposts_color": "#23223",
       "categori_allposts_bacgroundcolor": "#23223",
       "categori_allposts_fontsize": "14",
@@ -99,7 +100,7 @@ Parameters:
       "posts": [
         {
           "post_id": "5",
-          "post_image": "http://img.fontspace.com/images/fontspace-logo-small-white.png",
+          "post_image": "http://kodpress.com/images/white.png",
           "post_name": "Hello world is best code ever",
           "post_name_bacgroundcolor": "",
           "post_name_color": "",
@@ -114,25 +115,28 @@ Parameters:
       ]
     }...
   ],
-  "indexAdvertisement": [
+  "indexAdvertisement": [ ## Ekran için reklam yerleri
     {
-      "advertisement_spot": "5",
-      "advertisement_code": "<html></html>"
+      "advertisement_spot": "5", ##Belirlenen yerler için verilen idler(spotlar)
+      "advertisement_code": "<html></html>"  ## Reklam kodu
     }...
   ]
 }
 ```
 ---
+####**Tüm Post'ları Getir**
 
-GET /KODPRESS/allposts -> Tüm postları getirir.
-Parameters:
-: none
-
+**Request:**
+```
+URL: {www.domain.com}/kodpress-api/all-posts
+HTTP Request Type: GET
+Parameters: none
+	
+```
 **Response:**
-```json
+```
 {
-  "success": 1,
-  "errorcode": "200",
+  "success": 1, 
   "message": "ok",
   "categori_name": "Healt",
   "posts": [
@@ -152,33 +156,36 @@ Parameters:
       "post_detail_fontfamily": "Sans"
     }...
   ],
-  "allPostAdvertisement": [
+  "allPostAdvertisement": [   ## Ekran için reklam yerleri
     {
-      "advertisement_spot": "5",
-      "advertisement_code": "<html></html>"
+      "advertisement_spot": "5", ##Belirlenen yerler için verilen idler(spotlar)
+      "advertisement_code": "<html></html>"  ## Reklam kodu
     }...
   ]
 }
 ```
 ---
 
-GET /KODPRESS/detail/{post_id} -> Post'un detayını getirir. 
-Parameters:
-: none
+####**Post detaylarını getirir.**
 
+**Request:**
+```
+URL: {www.domain.com}/kodpress-api/detail/{post_id}
+HTTP Request Type: GET
+Parameters: none
+```
 **Response:**
-```json
+```
 {
   "success": 1,
-  "errorcode": "200",
   "message": "",
   "post_image": "",
   "post_name": "",
   "post_detail": "",
   "post_date": "15.07.2015 15:12   or today or yesterday",
   "post_author": "okancancosar",
-  "command_count": "5",
-  "shared_text": "'post_name' + 'post_link'",
+  "command_count": "5", ## post'un yorum sayısı 
+  "shared_text": "'post_name' + 'post_link'", ## sosyal medyalarda veya whatsappda paylaşma metni
   "relatedPosts": [
     {
       "post_id": "5",
@@ -205,13 +212,16 @@ Parameters:
 }
 ```
 ---
+####**Post'un yorumlarını getirir.**
 
-GET /KODPRESS/comments/{post_id} -> Post'un yorumlarını getirir. 
-Parameters:
-: none
-
+**Request:**
+```
+URL: {www.domain.com}/kodpress-api/comments/{post_id}
+HTTP Request Type: GET
+Parameters: none
+```
 **Response:**
-```json
+```
 {
   "success": 1,
   "errorcode": "200",
@@ -222,7 +232,7 @@ Parameters:
       "person_image": "",
       "comment_time_date": "10.08.2016 14:36:48",
       "comment_text": "",
-      "reply_comments": [
+      "reply_comments": [  ## yorumun cevapları
         {
           "person_name": "",
           "person_image": "",
@@ -235,27 +245,39 @@ Parameters:
 }
 ```
 ---
+####**Post'a yeni yorum ekler.**
 
-POST /KODPRESS/comments/ -> Post'a yeni yorum ekler.
+**Request:**
+```
+URL: {www.domain.com}/kodpress-api/comments
+HTTP Request Type: POST
 Parameters:	
-: "person_name"
-: "person_comments"
-: "post_id"
-
+ "person_name"
+ "person_comments"
+ "post_id"
+	
+```
 **Response:**
-```json
+```
 {"status":"1", "message":"ok"}
 ```
-------------------------------------------------------
-POST /KODPRESS/comments/ -> Post'un yorumuna cevap ekler.
-Parameters:
-: "person_name"
-: "person_comments"
-: "post_id"
-: "yorum_id"
 
+-----------
+
+####**Post'un yorumuna cevap ekler.**
+
+**Request:**
+```
+URL: {www.domain.com}/kodpress-api/comments
+HTTP Request Type: POST
+Parameters:
+ "person_name"
+ "person_comments"
+ "post_id"
+ "comment_id"	
+```
 **Response:**
-```json
+```
 {"status":"1", "message":"ok"}
 ```
 ---
