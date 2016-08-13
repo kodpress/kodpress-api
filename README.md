@@ -121,7 +121,7 @@ Parameters: none
       {
         "advertisement_spot": "5",  ##Belirlenen yerler için verilen idler(spotlar)
         "advertisement_code": "<html></html>" ## Reklam kodu
-      }
+      }...
     ]
   }
 }
@@ -227,7 +227,6 @@ Parameters: none
 ```
 {
   "success": 1,
-  "errorcode": "200",
   "message": "ok",
   "comments": [
     {
@@ -278,6 +277,26 @@ Parameters:
  "person_comments"
  "post_id"
  "comment_id"	
+```
+**Response:**
+```
+{"status":"1", "message":"ok"}
+```
+---
+
+####**Registration id kaydetme (Bildirim işlemleri için)**
+
+**Request:**
+```
+URL: {www.domain.com}/kodpress-api/save-registerid
+HTTP Request Type: POST
+Parameters:
+  "os_type"  ##IOS & ANDROID
+  "os_version"  ##// 5.0.1 OR 9.2.1
+  "device_model"  ## LG-D802TR 
+  "device_token" ## bildirim için gerekli id(ios)
+  "device_brand"  ##LGD & APPLE
+  "registration_id" ## bildirim için gerekli id(Android)	
 ```
 **Response:**
 ```
