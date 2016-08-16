@@ -127,11 +127,11 @@ Parameters: none
 }
 ```
 ---
-####**Tüm Post'ları Getir**
+####**Kategorinin tüm Post'ları Getirir**
 
 **Request:**
 ```
-URL: {www.domain.com}/kodpress-api/all-posts
+URL: {www.domain.com}/kodpress-api/all-posts/{category_id}
 HTTP Request Type: GET
 Parameters: none
 	
